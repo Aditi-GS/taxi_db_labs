@@ -238,3 +238,6 @@ print("\n=== CASE B: [execute + commit](x100k) (synchronous_commit=off) ===")
 print(case_B_metrics)
 print("\n=== CASE C: BULK COPY (synchronous_commit=off) ===")
 print(case_C_metrics)
+
+cursor.close()
+conn.close()

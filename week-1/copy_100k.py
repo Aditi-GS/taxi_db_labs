@@ -116,9 +116,16 @@ COPY trips({','.join(cols)})
 FROM STDIN
 WITH CSV HEADER DELIMITER ','
 """
-with open(abs_csv_path, 'r') as f:
-    cursor.copy_expert(copy_sql, f)
-conn.commit()
+
+try:
+    with open(abs_csv_path, 'r') as f:
+        cursor.copy_expert(copy_sql, f)
+    conn.commit()
+    print("Load successful!")
+except Exception as e:
+    conn.rollback()
+    print(f"Load failed, rolled back: {e}")
+    raise
 
 end_time = time()
 end_lsn = get_wal_lsn()
@@ -138,3 +145,6 @@ cursor.execute("""TRUNCATE TABLE trips RESTART IDENTITY;""")
 conn.commit()
 
 print(metrics)
+
+cursor.close()
+conn.close()  

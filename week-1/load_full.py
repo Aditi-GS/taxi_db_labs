@@ -116,8 +116,14 @@ FROM STDIN
 WITH CSV HEADER DELIMITER ','
 """
 
-cursor.copy_expert(copy_sql, buffer)
-conn.commit()
+try:
+    cursor.copy_expert(copy_sql, buffer)
+    conn.commit()
+    print("Load successful!")
+except Exception as e:
+    conn.rollback()
+    print(f"Load failed, rolled back: {e}")
+    raise
 
 end_time = time()
 end_lsn = get_wal_lsn()
@@ -137,3 +143,6 @@ metrics = {
 # conn.commit()
 
 print(metrics)
+
+cursor.close()
+conn.close()

@@ -43,9 +43,16 @@ COPY trips({','.join(cols)})
 FROM STDIN
 WITH CSV HEADER DELIMITER ','
 """
-with open(abs_csv_path, 'r') as f:
-    cursor.copy_expert(copy_sql, f)
-conn.commit()
+
+try:
+    with open(abs_csv_path, 'r') as f:
+        cursor.copy_expert(copy_sql, f)
+    conn.commit()
+    print("Load successful!")
+except Exception as e:
+    conn.rollback()
+    print(f"Load failed, rolled back: {e}")
+    raise
 
 # print("\nCLEANUP\n")
 # cursor.execute("""TRUNCATE TABLE trips RESTART IDENTITY;""")
