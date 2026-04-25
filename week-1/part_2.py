@@ -103,6 +103,7 @@ def delta_wal_stats(start, end):
 def reset_wal_stats():
     cursor.execute("SELECT pg_stat_reset_shared('wal')")
     cursor.execute("SELECT pg_stat_reset_shared('io')")
+    conn.commit()
 
 ## <--------------------    Enable WAL I/O timing + Reload configuration     -------------------->
 enable_wal_io_tracking()
