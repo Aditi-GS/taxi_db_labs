@@ -1,5 +1,5 @@
 ## Table Of Contents:
-0. [Week 1 Objectives](#objectives)
+0. [Phase 1 Objectives](#objectives)
 1. [Compare Insertion Methods](#part-1)  
 2. [WAL Deep Dive](#part-2)
 3. [Observability Baseline](#part-3)
@@ -21,7 +21,7 @@ Understand how PostgreSQL handles writes internally - WAL, transactions, commit 
 6. `synchronous_commit` Tradeoff  
 7. Partitioning by Time 
 
-Week 1 is all about writes : how data gets into PostgreSQL, how WAL records that work, and what the cost of different commit strategies looks like.  
+Phase 1 is all about writes : how data gets into PostgreSQL, how WAL records that work, and what the cost of different commit strategies looks like.  
 
 ---
 

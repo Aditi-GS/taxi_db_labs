@@ -1,6 +1,6 @@
 ## Table Of Contents:
 0. [Overview](#overview)
-1. [Write-Heavy Workload](#week-1)
+1. [Write-Heavy Workload](#phase-1)
 
 ---
 
@@ -19,7 +19,7 @@ results in reduced file sizes and increased speeds.
 
 ---
 
-## Week 1  
+## Phase 1  
 #### Goal:  
 Understand how PostgreSQL handles writes internally - WAL, transactions, commit strategies, and partitioning.  
 
